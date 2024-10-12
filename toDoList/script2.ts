@@ -9,18 +9,19 @@ addTaskButton.addEventListener("click", () => {
   const taskText = taskInput.value.trim();
 
   // Проверяем, что input не пустой
-  if (taskText !== "") {
-    // Создаем новый элемент списка <li>
-    const newTaskItem = document.createElement("li");
-    newTaskItem.textContent = taskText;
-    newTaskItem.classList.add("todo-item"); // Добавляем класс для стилизации
-
-    // Добавляем задачу в список
-    todoList.appendChild(newTaskItem);
-
-    // Очищаем поле ввода
-    taskInput.value = "";
-  } else {
+  if (!taskText) {
     alert("Введите задачу!");
+    return;
   }
+
+  // Создаем новый элемент списка <li>
+  const newTaskItem = document.createElement("li");
+  newTaskItem.textContent = taskText;
+  newTaskItem.classList.add("todo-item"); // Добавляем класс для стилизации
+
+  // Добавляем задачу в список
+  todoList.appendChild(newTaskItem);
+
+  // Очищаем поле ввода
+  taskInput.value = "";
 });

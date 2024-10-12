@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
-</head>
-<style>
+  </head>
+  <style>
     .text {
-        transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+      transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
     .green {
-        background-color: limegreen;
+      background-color: limegreen;
     }
 
     .todo-list {
-        margin-top: 20px;
-        list-style-type: none;
-        padding: 0;
+      margin-top: 20px;
+      list-style-type: none;
+      padding: 0;
     }
 
     .todo-item {
-        background-color: #f3f3f3;
-        margin: 5px 0;
-        padding: 10px;
-        border-radius: 5px;
+      background-color: #f3f3f3;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
     }
-</style>
+  </style>
 
-<body>
+  <body>
     <p class="text green">Lorem ipsum dolor sit.</p>
     <div>
-        <input type="text" id="taskInput" placeholder="Введите задачу">
-        <button id="addTaskButton">Добавить задачу</button>
+      <input type="text" id="taskInput" placeholder="Введите задачу" />
+      <button id="addTaskButton">Добавить задачу</button>
     </div>
 
     <ul id="todoList" class="todo-list"></ul>
 
     <script src="script2.js"></script>
-</body>
-
+  </body>
 </html>

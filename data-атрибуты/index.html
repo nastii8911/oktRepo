@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .cards {
+      display: flex;
+      gap: 10px;
+    }
+
+    .card {
+      width: 300px;
+      border: 1px solid #000;
+      background-color: peachpuff;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+  <body>
+    <div class="input-field">
+      <input
+        type="text"
+        data-validation-message="Длина сообщения не должна быть больше 5 символов"
+      />
+    </div>
+    <button>Сохранить</button>
+    <div class="cards">
+      <div class="card">
+        <h3 class="card__title">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
+          architecto.
+        </h3>
+        <img
+          src="https://i.pinimg.com/736x/9f/b3/d3/9fb3d303905046143b259f42e33c7844.jpg"
+          alt=""
+        />
+        <p class="card__text">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit
+          possimus aperiam fugiat incidunt iste aut consectetur neque odio
+          maiores, nihil animi, dignissimos laudantium quisquam dolores autem!
+          Exercitationem minima rerum necessitatibus!
+        </p>
+        <button class="card__button">Ok!</button>
+      </div>
+    </div>
+
+    <template class="card-template">
+      <div class="card">
+        <h3 class="card__title"></h3>
+        <img class="card__image" />
+        <p class="card__text"></p>
+        <button class="card__button"></button>
+      </div>
+    </template>
+
+    <script src="1.js"></script>
+  </body>
+</html>
