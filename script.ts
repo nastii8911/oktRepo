@@ -5,6 +5,8 @@ const sumButton = document.querySelector(".sum-button") as HTMLElement
 console.log(p)
 console.dir(p)
 
+// 123qwdqwd
+
 button.addEventListener("click", () => {
     console.log("click happened")
 
