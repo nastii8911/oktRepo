@@ -1,4 +1,3 @@
-"use strict";
 // Получаем элементы через querySelector с добавлением типов
 const taskInput = document.querySelector(".task-input");
 const taskDescription = document.querySelector(".task-description");
@@ -43,6 +42,7 @@ function createTodoItem(taskText, taskDescriptionText) {
     todoContent.classList.add("todo-content");
     const taskTitle = document.createElement("span");
     taskTitle.textContent = taskText;
+    taskTitle.classList.add("task__title");
     const taskDescription = document.createElement("small");
     taskDescription.textContent = taskDescriptionText;
     // Добавляем элементы к контейнеру
@@ -71,3 +71,4 @@ addTaskButton.addEventListener("click", () => {
         }
     }
 });
+export {};

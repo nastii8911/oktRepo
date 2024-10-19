@@ -59,6 +59,7 @@ function createTodoItem(
 
   const taskTitle = document.createElement("span");
   taskTitle.textContent = taskText;
+  taskTitle.classList.add("task__title");
   const taskDescription = document.createElement("small");
   taskDescription.textContent = taskDescriptionText;
 
@@ -93,3 +94,5 @@ addTaskButton.addEventListener("click", () => {
     }
   }
 });
+
+export {};
