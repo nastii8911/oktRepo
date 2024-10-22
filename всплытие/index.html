@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #2f2f2f;
+        color: white;
+    }
+
+    .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #f7b500;
+        padding: 10px;
+        margin: 5px;
+        transition: background-color 0.3s;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Для подсветки */
+    .active {
+        background-color: #f7b500;
+    }
+</style>
+
+<body>
+    <div class="box outer">
+        <div class="box">
+            <div class="box">
+                <div class="box">
+                    <div class="box">
+                        <div class="box">
+                            <div class="box">
+                                <div class="box">
+                                    <div class="box">
+                                        <div class="box">
+                                            <button class="btn">Нажми на меня</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
