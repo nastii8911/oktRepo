@@ -1,26 +1,13 @@
 // Получаем элементы через querySelector с добавлением типов
 const taskInput = document.querySelector(".task-input") as HTMLInputElement;
-const taskDescription = document.querySelector(
-  ".task-description"
-) as HTMLInputElement;
+const taskDescription = document.querySelector(".task-description") as HTMLInputElement;
 const taskDate = document.querySelector(".task-date") as HTMLInputElement;
-const addTaskButton = document.querySelector(
-  ".add-task-button"
-) as HTMLButtonElement;
-const generateButton = document.querySelector(
-  ".generate-btn"
-) as HTMLButtonElement;
+const addTaskButton = document.querySelector(".add-task-button") as HTMLButtonElement;
+const generateButton = document.querySelector(".generate-btn") as HTMLButtonElement;
 const todoList = document.querySelector(".todo-list") as HTMLElement;
 
 // Проверяем, что элементы существуют
-if (
-  !taskInput ||
-  !taskDescription ||
-  !taskDate ||
-  !addTaskButton ||
-  !todoList ||
-  !generateButton
-) {
+if (!taskInput || !taskDescription || !taskDate || !addTaskButton || !todoList || !generateButton) {
   throw new Error("Не удалось найти необходимые элементы на странице.");
 }
 type randomTask = {
@@ -29,25 +16,12 @@ type randomTask = {
 };
 // Функция для генерации случайного текста
 function generateRandomText(): randomTask {
-  const tasks: string[] = [
-    "Покупка продуктов",
-    "Завершить проект",
-    "Позвонить другу",
-    "Написать отчёт",
-    "Прочитать книгу",
-  ];
-  const descriptions: string[] = [
-    "описание задачи",
-    "описание задачи",
-    "описание задачи",
-    "описание задачи",
-    "описание задачи",
-  ];
+  const tasks: string[] = ["Покупка продуктов", "Завершить проект", "Позвонить другу", "Написать отчёт", "Прочитать книгу"];
+  const descriptions: string[] = ["описание задачи", "сделать задачу", "отменить задачу", "завершить задачу", "продлить задачу"];
 
   // Случайный индекс для задач и описаний
   const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
-  const randomDescription =
-    descriptions[Math.floor(Math.random() * descriptions.length)];
+  const randomDescription = descriptions[Math.floor(Math.random() * descriptions.length)];
   console.log(randomTask);
   console.log(typeof randomTask);
   return { task: randomTask, description: randomDescription };
@@ -58,8 +32,7 @@ function toggleAddButtonState(): void {
   const isTaskInputFilled = taskInput.value.trim() !== "";
   const isTaskDescriptionFilled = taskDescription.value.trim() !== "";
   const isTaskDateFilled = taskDate.value !== null;
-  const shouldEnableButton =
-    isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
+  const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
 
   addTaskButton.disabled = !shouldEnableButton;
 }
@@ -94,11 +67,7 @@ function isDuplicateTask(taskText: string): boolean {
 }
 
 // Функция для создания нового элемента списка
-function createTodoItem(
-  taskText: string,
-  taskDescriptionText: string,
-  taskDateText: string
-): HTMLLIElement {
+function createTodoItem(taskText: string, taskDescriptionText: string, taskDateText: string): HTMLLIElement {
   const newTaskItem = document.createElement("li");
   newTaskItem.classList.add("todo-item");
 
@@ -139,11 +108,7 @@ addTaskButton.addEventListener("click", () => {
     if (isDuplicateTask(taskText)) {
       alert("Задача с таким названием уже существует!");
     } else {
-      const newTaskItem = createTodoItem(
-        taskText,
-        taskDescriptionText,
-        taskDateText
-      );
+      const newTaskItem = createTodoItem(taskText, taskDescriptionText, taskDateText);
       todoList.appendChild(newTaskItem);
       resetForm();
     }

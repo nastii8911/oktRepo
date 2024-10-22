@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const promise = fetch("https://jsonplaceholder.typicode.com/todos");
 // Получаем данные с API
 promise
@@ -24,3 +22,4 @@ function isWordsNumberGreaterThan3(todo) {
     const words = todo.title.split(" "); // Разделяем строку по пробелу
     return words.length === 3; // Проверяем, что в заголовке 3 слова
 }
+export {};

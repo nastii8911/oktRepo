@@ -22,6 +22,7 @@ Object.keys(user).forEach((key) => {
     console.log(value);
     //   console.log(key);
 });
+// Правильный вывод ключей с типами:
 Object.keys(user).forEach((key) => {
     const value = user[key];
     //   console.log(value);

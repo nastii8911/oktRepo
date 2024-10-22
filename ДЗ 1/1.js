@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const promise = fetch("https://jsonplaceholder.typicode.com/todos");
 // Получаем данные с API
 promise
@@ -24,3 +22,4 @@ promise
     .catch((err) => {
     console.log("rejected", err.message);
 });
+export {};

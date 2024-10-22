@@ -1,11 +1,7 @@
 // Получаем элементы через querySelector с добавлением типов
 const taskInput = document.querySelector(".task-input") as HTMLInputElement;
-const taskDescription = document.querySelector(
-  ".task-description"
-) as HTMLTextAreaElement;
-const addTaskButton = document.querySelector(
-  ".add-task-button"
-) as HTMLButtonElement;
+const taskDescription = document.querySelector(".task-description") as HTMLTextAreaElement;
+const addTaskButton = document.querySelector(".add-task-button") as HTMLButtonElement;
 const todoList = document.querySelector(".todo-list") as HTMLElement;
 
 // Проверяем, что элементы существуют
@@ -46,10 +42,7 @@ function deleteTask(taskElement: HTMLLIElement): void {
 // }
 
 // Функция для создания нового элемента списка
-function createTodoItem(
-  taskText: string,
-  taskDescriptionText: string
-): HTMLLIElement {
+function createTodoItem(taskText: string, taskDescriptionText: string): HTMLLIElement {
   const newTaskItem = document.createElement("li");
   newTaskItem.classList.add("todo-item");
 

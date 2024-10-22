@@ -7,30 +7,13 @@ const addTaskButton = document.querySelector(".add-task-button");
 const generateButton = document.querySelector(".generate-btn");
 const todoList = document.querySelector(".todo-list");
 // Проверяем, что элементы существуют
-if (!taskInput ||
-    !taskDescription ||
-    !taskDate ||
-    !addTaskButton ||
-    !todoList ||
-    !generateButton) {
+if (!taskInput || !taskDescription || !taskDate || !addTaskButton || !todoList || !generateButton) {
     throw new Error("Не удалось найти необходимые элементы на странице.");
 }
 // Функция для генерации случайного текста
 function generateRandomText() {
-    const tasks = [
-        "Покупка продуктов",
-        "Завершить проект",
-        "Позвонить другу",
-        "Написать отчёт",
-        "Прочитать книгу",
-    ];
-    const descriptions = [
-        "описание задачи",
-        "описание задачи",
-        "описание задачи",
-        "описание задачи",
-        "описание задачи",
-    ];
+    const tasks = ["Покупка продуктов", "Завершить проект", "Позвонить другу", "Написать отчёт", "Прочитать книгу"];
+    const descriptions = ["описание задачи", "сделать задачу", "отменить задачу", "завершить задачу", "продлить задачу"];
     // Случайный индекс для задач и описаний
     const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
     const randomDescription = descriptions[Math.floor(Math.random() * descriptions.length)];

@@ -24,8 +24,7 @@ type Card = {
   imageUrl: string;
 };
 
-const imageUrl =
-  "https://i.pinimg.com/736x/9f/b3/d3/9fb3d303905046143b259f42e33c7844.jpg";
+const imageUrl = "https://i.pinimg.com/736x/9f/b3/d3/9fb3d303905046143b259f42e33c7844.jpg";
 
 const cards: Card[] = [
   {
@@ -120,9 +119,7 @@ const cardsContainer = document.querySelector(".cards");
 //   cardsContainer?.appendChild(card);
 // });
 
-const template = document.querySelector(
-  ".card-template"
-) as HTMLTemplateElement;
+const template = document.querySelector(".card-template") as HTMLTemplateElement;
 const cardTemplate = template.content;
 
 cards.forEach((cardData) => {
