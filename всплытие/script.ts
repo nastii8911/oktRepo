@@ -8,9 +8,11 @@ button?.addEventListener("click", () => {
   // ) as HTMLCollectionOf<HTMLElement>;
   //error ошибка
 
-  const boxes = document.querySelectorAll(".box") as NodeListOf<HTMLElement>;
+  const boxes = Array.from(document.querySelectorAll(".box") as NodeListOf<HTMLElement>);
   //   const boxes: NodeListOf<HTMLElement> = document.querySelectorAll(".box");
   let delay: number = 0;
+
+  boxes.reverse();
 
   boxes.forEach((box: HTMLElement) => {
     setTimeout(() => {
@@ -19,7 +21,7 @@ button?.addEventListener("click", () => {
       // Удаляем подсветку через некоторое время
       setTimeout(() => {
         box.classList.remove("active");
-      }, 500);
+      }, 100);
     }, delay);
 
     delay += 300; // Задержка перед подсветкой следующего элемента

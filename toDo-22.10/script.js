@@ -1,106 +1,66 @@
-"use strict";
+import { createTodoItem } from "./create-todo-item.js";
+import { isDuplicateTask } from "./is-duplicate-task.js";
 // Получаем элементы через querySelector с добавлением типов
-const taskInput = document.querySelector(".task-input");
-const taskDescription = document.querySelector(".task-description");
-const taskDate = document.querySelector(".task-date");
+const textInput = document.querySelector(".task-input");
+const descriptionInput = document.querySelector(".task-description");
+const dateInput = document.querySelector(".task-date");
 const addTaskButton = document.querySelector(".add-task-button");
 const generateButton = document.querySelector(".generate-btn");
 const todoList = document.querySelector(".todo-list");
-// Проверяем, что элементы существуют
-if (!taskInput || !taskDescription || !taskDate || !addTaskButton || !todoList || !generateButton) {
+// F2 - переименовать переменную
+if (!textInput || !descriptionInput || !dateInput || !addTaskButton || !todoList || !generateButton) {
     throw new Error("Не удалось найти необходимые элементы на странице.");
+}
+textInput.addEventListener("input", toggleAddButtonState);
+descriptionInput.addEventListener("input", toggleAddButtonState);
+dateInput.addEventListener("input", toggleAddButtonState);
+addTaskButton.addEventListener("click", onAddTaskButtonClick);
+generateButton.addEventListener("click", onGenerateButtonClick);
+function getRandomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 // Функция для генерации случайного текста
 function generateRandomText() {
     const tasks = ["Покупка продуктов", "Завершить проект", "Позвонить другу", "Написать отчёт", "Прочитать книгу"];
     const descriptions = ["описание задачи", "сделать задачу", "отменить задачу", "завершить задачу", "продлить задачу"];
-    // Случайный индекс для задач и описаний
-    const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
-    const randomDescription = descriptions[Math.floor(Math.random() * descriptions.length)];
-    console.log(randomTask);
-    console.log(typeof randomTask);
-    return { task: randomTask, description: randomDescription };
+    return {
+        task: tasks[getRandomInRange(0, tasks.length - 1)],
+        description: descriptions[getRandomInRange(0, descriptions.length - 1)],
+    };
+}
+// Функция для очистки полей ввода и сброса кнопки
+function resetForm() {
+    textInput.value = "";
+    descriptionInput.value = "";
+    dateInput.value = "";
+    addTaskButton.disabled = true;
 }
 // Функция для управления состоянием кнопки
 function toggleAddButtonState() {
-    const isTaskInputFilled = taskInput.value.trim() !== "";
-    const isTaskDescriptionFilled = taskDescription.value.trim() !== "";
-    const isTaskDateFilled = taskDate.value !== null;
+    const isTaskInputFilled = textInput.value.trim() !== "";
+    const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
+    const isTaskDateFilled = Boolean(dateInput.value);
     const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
     addTaskButton.disabled = !shouldEnableButton;
 }
-// Добавляем проверки для проверки, чтобы кнопка была активна
-taskInput.addEventListener("input", toggleAddButtonState);
-taskDescription.addEventListener("input", toggleAddButtonState);
-taskDate.addEventListener("input", toggleAddButtonState);
-// Функция для очистки полей ввода и сброса кнопки
-function resetForm() {
-    taskInput.value = "";
-    taskDescription.value = "";
-    taskDate.value = "";
-    addTaskButton.disabled = true;
-}
-// Функция для удаления задачи
-function deleteTask(taskElement) {
-    todoList.removeChild(taskElement);
-}
-// Функция для проверки наличия дубликатов задач
-function isDuplicateTask(taskText) {
-    var _a;
-    const existingTasks = todoList.querySelectorAll(".todo-item span");
-    for (let task of existingTasks) {
-        if (((_a = task.textContent) === null || _a === void 0 ? void 0 : _a.trim().toLowerCase()) === taskText.toLowerCase()) {
-            return true;
-        }
+function onAddTaskButtonClick() {
+    const text = textInput.value.trim();
+    const description = descriptionInput.value.trim();
+    const date = new Date(dateInput.value); // 2024-10-10 => new Date("2024-10-10")
+    if (!text || !description || !date)
+        return;
+    if (isDuplicateTask(text)) {
+        alert("Задача с таким названием уже существует!");
+        return;
     }
-    return false;
+    const newTaskItem = createTodoItem(text, description, date);
+    todoList.appendChild(newTaskItem);
+    resetForm();
 }
-// Функция для создания нового элемента списка
-function createTodoItem(taskText, taskDescriptionText, taskDateText) {
-    const newTaskItem = document.createElement("li");
-    newTaskItem.classList.add("todo-item");
-    // Контейнер для текста задачи и описания
-    const todoContent = document.createElement("div");
-    todoContent.classList.add("todo-content");
-    const taskTitle = document.createElement("span");
-    taskTitle.textContent = `${taskText}  Сделать до: ${taskDateText}`;
-    const taskDescription = document.createElement("small");
-    taskDescription.textContent = taskDescriptionText;
-    // Добавляем элементы к контейнеру
-    todoContent.appendChild(taskTitle);
-    todoContent.appendChild(taskDescription);
-    // Создаем кнопку удаления
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Удалить";
-    deleteButton.classList.add("delete-btn");
-    deleteButton.addEventListener("click", () => deleteTask(newTaskItem));
-    // Добавляем содержимое и кнопку удаления в элемент списка
-    newTaskItem.appendChild(todoContent);
-    newTaskItem.appendChild(deleteButton);
-    return newTaskItem;
-}
-// Добавляем обработчик события на кнопку
-addTaskButton.addEventListener("click", () => {
-    const taskText = taskInput.value.trim();
-    const taskDescriptionText = taskDescription.value.trim();
-    const taskDateText = taskDate.value.trim();
-    // Проверяем, что поля не пустые
-    if (taskText && taskDescriptionText && taskDateText) {
-        if (isDuplicateTask(taskText)) {
-            alert("Задача с таким названием уже существует!");
-        }
-        else {
-            const newTaskItem = createTodoItem(taskText, taskDescriptionText, taskDateText);
-            todoList.appendChild(newTaskItem);
-            resetForm();
-        }
-    }
-});
-// Обработчик события для кнопки генерации случайного текста
-generateButton.addEventListener("click", () => {
+function onGenerateButtonClick() {
     const randomText = generateRandomText();
-    taskInput.value = randomText.task;
-    taskDescription.value = randomText.description;
+    textInput.value = randomText.task;
+    descriptionInput.value = randomText.description;
     // Обновить состояние кнопки "Добавить задачу"
     toggleAddButtonState();
-});
+}
