@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List with Deadline</title>
+    <style>
+        .text {
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .green {
+            background-color: limegreen;
+        }
+
+        .todo-list {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .todo-item {
+            background-color: #f3f3f3;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .todo-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .delete-btn {
+            margin-left: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+
+        .task-input,
+        .task-description,
+        .task-date {
+            width: 300px;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .task-input:focus,
+        .task-description:focus,
+        .task-date:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        /* Стили для кнопок */
+        .add-task-button,
+        .generate-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            /* Белый текст */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .add-task-button:active,
+        .generate-btn:active {
+            background-color: #1e7e34;
+            /* Еще темнее при нажатии */
+            transform: scale(0.98);
+            /* Небольшое уменьшение размера при клике */
+        }
+
+        .add-task-button:disabled {
+            background-color: #c3e6cb;
+            /* Светло-зеленый, когда кнопка неактивна */
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="text green">Lorem ipsum dolor sit.</p>
+    <div>
+        <input type="text" class="task-input" placeholder="Введите задачу">
+        <input type="text" class="task-description" placeholder="Введите описание задачи">
+        <input type="date" class="task-date">
+        <button class="add-task-button" disabled>Добавить задачу</button>
+        <button class="generate-btn">Ввести случайный текст</button>
+    </div>
+
+    <ul class="todo-list"></ul>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
