@@ -8,7 +8,6 @@ const dateInput = document.querySelector(".task-date") as HTMLInputElement;
 const addTaskButton = document.querySelector(".add-task-button") as HTMLButtonElement;
 const generateButton = document.querySelector(".generate-btn") as HTMLButtonElement;
 const todoList = document.querySelector(".todo-list") as HTMLElement;
-// F2 - переименовать переменную
 
 if (!textInput || !descriptionInput || !dateInput || !addTaskButton || !todoList || !generateButton) {
   throw new Error("Не удалось найти необходимые элементы на странице.");
@@ -70,8 +69,12 @@ function onAddTaskButtonClick() {
     return;
   }
 
-  const newTaskItem = createTodoItem(text, description, date);
-  todoList.appendChild(newTaskItem);
+  // const newTaskItem = createTodoItem(text, description, dateInput);
+  // todoList.appendChild(newTaskItem);
+  const newTask = createTodoItem(text, description, date);
+  if (newTask) {
+    todoList.appendChild(newTask);
+  }
   resetForm();
 }
 
