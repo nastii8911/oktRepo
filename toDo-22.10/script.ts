@@ -8,7 +8,6 @@ const dateInput = document.querySelector(".task-date") as HTMLInputElement;
 const addTaskButton = document.querySelector(".add-task-button") as HTMLButtonElement;
 const generateButton = document.querySelector(".generate-btn") as HTMLButtonElement;
 const todoList = document.querySelector(".todo-list") as HTMLElement;
-// F2 - переименовать переменную
 
 if (!textInput || !descriptionInput || !dateInput || !addTaskButton || !todoList || !generateButton) {
   throw new Error("Не удалось найти необходимые элементы на странице.");
@@ -46,6 +45,8 @@ function resetForm(): void {
   descriptionInput.value = "";
   dateInput.value = "";
   addTaskButton.disabled = true;
+
+  // dateValue = "";
 }
 
 // Функция для управления состоянием кнопки
@@ -61,8 +62,25 @@ function toggleAddButtonState(): void {
 function onAddTaskButtonClick() {
   const text = textInput.value.trim();
   const description = descriptionInput.value.trim();
-  const date = new Date(dateInput.value); // 2024-10-10 => new Date("2024-10-10")
+  // const date = new Date(dateInput.value); // 2024-10-10 => new Date("2024-10-10")
+  const dateValue = dateInput.value;
+  if (!dateValue) {
+    console.error("Не указана дата!");
+    return null;
+  }
 
+  const date = new Date(dateValue);
+  if (isNaN(date.getTime())) {
+    console.error("Некорректная дата!");
+    return null;
+  }
+
+  // Форматируем дату
+  const formattedDate = date.toLocaleDateString("ru-RU", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   if (!text || !description || !date) return;
 
   if (isDuplicateTask(text)) {
@@ -70,8 +88,12 @@ function onAddTaskButtonClick() {
     return;
   }
 
-  const newTaskItem = createTodoItem(text, description, date);
-  todoList.appendChild(newTaskItem);
+  // const newTaskItem = createTodoItem(text, description, dateInput);
+  // todoList.appendChild(newTaskItem);
+  const newTask = createTodoItem(text, description, date);
+  if (newTask) {
+    todoList.appendChild(newTask);
+  }
   resetForm();
 }
 

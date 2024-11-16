@@ -14,6 +14,7 @@ export function createTodoItem(text: string, description: string, date: Date): H
   const dateSpan = document.createElement("span");
   dateSpan.classList.add("task__date");
   dateSpan.textContent = `Сделать до: ${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+  // dateSpan.textContent = `Сделать до: ${formattedDate}`;
 
   const taskDescription = document.createElement("small");
   taskDescription.textContent = description;
