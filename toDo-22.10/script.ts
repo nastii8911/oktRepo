@@ -45,55 +45,63 @@ function resetForm(): void {
   descriptionInput.value = "";
   dateInput.value = "";
   addTaskButton.disabled = true;
-
-  // dateValue = "";
 }
 
 // Функция для управления состоянием кнопки
 function toggleAddButtonState(): void {
+  // const isTaskInputFilled = textInput.value.trim() !== "";
+  // const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
+  // const isTaskDateFilled = Boolean(dateInput.value);
+
+  // const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
+  // addTaskButton.disabled = !shouldEnableButton;
+
   const isTaskInputFilled = textInput.value.trim() !== "";
   const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
   const isTaskDateFilled = Boolean(dateInput.value);
 
   const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
+  console.log("Поля заполнены:", {
+    isTaskInputFilled,
+    isTaskDescriptionFilled,
+    isTaskDateFilled,
+    shouldEnableButton,
+  });
+
   addTaskButton.disabled = !shouldEnableButton;
 }
 
 function onAddTaskButtonClick() {
   const text = textInput.value.trim();
   const description = descriptionInput.value.trim();
-  // const date = new Date(dateInput.value); // 2024-10-10 => new Date("2024-10-10")
   const dateValue = dateInput.value;
+
   if (!dateValue) {
     console.error("Не указана дата!");
-    return null;
+    return;
   }
 
   const date = new Date(dateValue);
   if (isNaN(date.getTime())) {
     console.error("Некорректная дата!");
-    return null;
+    return;
   }
 
-  // Форматируем дату
-  const formattedDate = date.toLocaleDateString("ru-RU", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-  if (!text || !description || !date) return;
+  if (!text || !description) {
+    console.error("Не все поля заполнены!");
+    return;
+  }
 
   if (isDuplicateTask(text)) {
     alert("Задача с таким названием уже существует!");
     return;
   }
 
-  // const newTaskItem = createTodoItem(text, description, dateInput);
-  // todoList.appendChild(newTaskItem);
   const newTask = createTodoItem(text, description, date);
   if (newTask) {
     todoList.appendChild(newTask);
   }
+
   resetForm();
 }
 
