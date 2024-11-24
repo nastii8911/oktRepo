@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTodoItem = void 0;
-function createTodoItem(text, description, date) {
+export function createTodoItem(text, description, date) {
     const newTaskItem = document.createElement("li");
     newTaskItem.classList.add("todo-item");
     // Контейнер для текста задачи и описания
@@ -36,7 +33,6 @@ function createTodoItem(text, description, date) {
     newTaskItem.appendChild(deleteButton);
     return newTaskItem;
 }
-exports.createTodoItem = createTodoItem;
 function deleteTask(taskElement) {
     const todoList = document.querySelector(".todo-list");
     todoList.removeChild(taskElement);

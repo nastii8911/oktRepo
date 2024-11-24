@@ -1,7 +1,6 @@
 import { createTodoItem } from "./create-todo-item.js";
 import { isDuplicateTask } from "./is-duplicate-task.js";
 
-// Получаем элементы через querySelector с добавлением типов
 const textInput = document.querySelector(".task-input") as HTMLInputElement;
 const descriptionInput = document.querySelector(".task-description") as HTMLInputElement;
 const dateInput = document.querySelector(".task-date") as HTMLInputElement;
@@ -28,7 +27,6 @@ function getRandomInRange(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Функция для генерации случайного текста
 function generateRandomText(): RandomTask {
   const tasks: string[] = ["Покупка продуктов", "Завершить проект", "Позвонить другу", "Написать отчёт", "Прочитать книгу"];
   const descriptions: string[] = ["описание задачи", "сделать задачу", "отменить задачу", "завершить задачу", "продлить задачу"];
@@ -39,7 +37,6 @@ function generateRandomText(): RandomTask {
   };
 }
 
-// Функция для очистки полей ввода и сброса кнопки
 function resetForm(): void {
   textInput.value = "";
   descriptionInput.value = "";
@@ -47,26 +44,13 @@ function resetForm(): void {
   addTaskButton.disabled = true;
 }
 
-// Функция для управления состоянием кнопки
 function toggleAddButtonState(): void {
-  // const isTaskInputFilled = textInput.value.trim() !== "";
-  // const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
-  // const isTaskDateFilled = Boolean(dateInput.value);
-
   const isTaskInputFilled = textInput.value.trim() !== "";
   const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
   const isTaskDateFilled = Boolean(dateInput.value);
   const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
-  addTaskButton.disabled = !shouldEnableButton;
-  //   const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
-  //   console.log("Поля заполнены:", {
-  //     isTaskInputFilled,
-  //     isTaskDescriptionFilled,
-  //     isTaskDateFilled,
-  //     shouldEnableButton,
-  //   });
 
-  //   addTaskButton.disabled = !shouldEnableButton;
+  addTaskButton.disabled = !shouldEnableButton;
 }
 
 function onAddTaskButtonClick(): void {
@@ -95,9 +79,7 @@ function onAddTaskButtonClick(): void {
     return;
   }
 
-  const newTask = { text, description, date: date.toISOString() };
   createTodoItem(text, description, date);
-  // saveTaskToServer(newTask);
   resetForm();
 }
 
@@ -106,6 +88,5 @@ function onGenerateButtonClick() {
   textInput.value = randomText.task;
   descriptionInput.value = randomText.description;
 
-  // Обновить состояние кнопки "Добавить задачу"
   toggleAddButtonState();
 }
