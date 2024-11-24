@@ -41,19 +41,19 @@ function toggleAddButtonState() {
     // const isTaskInputFilled = textInput.value.trim() !== "";
     // const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
     // const isTaskDateFilled = Boolean(dateInput.value);
-    // const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
-    // addTaskButton.disabled = !shouldEnableButton;
     const isTaskInputFilled = textInput.value.trim() !== "";
     const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
     const isTaskDateFilled = Boolean(dateInput.value);
     const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
-    console.log("Поля заполнены:", {
-        isTaskInputFilled,
-        isTaskDescriptionFilled,
-        isTaskDateFilled,
-        shouldEnableButton,
-    });
     addTaskButton.disabled = !shouldEnableButton;
+    //   const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
+    //   console.log("Поля заполнены:", {
+    //     isTaskInputFilled,
+    //     isTaskDescriptionFilled,
+    //     isTaskDateFilled,
+    //     shouldEnableButton,
+    //   });
+    //   addTaskButton.disabled = !shouldEnableButton;
 }
 function onAddTaskButtonClick() {
     const text = textInput.value.trim();
@@ -65,7 +65,7 @@ function onAddTaskButtonClick() {
     }
     const date = new Date(dateValue);
     if (isNaN(date.getTime())) {
-        console.error("Некорректная дата!");
+        console.error("Некорректная дата:", dateValue);
         return;
     }
     if (!text || !description) {
@@ -76,10 +76,9 @@ function onAddTaskButtonClick() {
         alert("Задача с таким названием уже существует!");
         return;
     }
-    const newTask = (0, create_todo_item_js_1.createTodoItem)(text, description, date);
-    if (newTask) {
-        todoList.appendChild(newTask);
-    }
+    const newTask = { text, description, date: date.toISOString() };
+    (0, create_todo_item_js_1.createTodoItem)(text, description, date);
+    // saveTaskToServer(newTask);
     resetForm();
 }
 function onGenerateButtonClick() {

@@ -53,25 +53,23 @@ function toggleAddButtonState(): void {
   // const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
   // const isTaskDateFilled = Boolean(dateInput.value);
 
-  // const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
-  // addTaskButton.disabled = !shouldEnableButton;
-
   const isTaskInputFilled = textInput.value.trim() !== "";
   const isTaskDescriptionFilled = descriptionInput.value.trim() !== "";
   const isTaskDateFilled = Boolean(dateInput.value);
-
   const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
-  console.log("Поля заполнены:", {
-    isTaskInputFilled,
-    isTaskDescriptionFilled,
-    isTaskDateFilled,
-    shouldEnableButton,
-  });
-
   addTaskButton.disabled = !shouldEnableButton;
+  //   const shouldEnableButton = isTaskInputFilled && isTaskDescriptionFilled && isTaskDateFilled;
+  //   console.log("Поля заполнены:", {
+  //     isTaskInputFilled,
+  //     isTaskDescriptionFilled,
+  //     isTaskDateFilled,
+  //     shouldEnableButton,
+  //   });
+
+  //   addTaskButton.disabled = !shouldEnableButton;
 }
 
-function onAddTaskButtonClick() {
+function onAddTaskButtonClick(): void {
   const text = textInput.value.trim();
   const description = descriptionInput.value.trim();
   const dateValue = dateInput.value;
@@ -83,7 +81,7 @@ function onAddTaskButtonClick() {
 
   const date = new Date(dateValue);
   if (isNaN(date.getTime())) {
-    console.error("Некорректная дата!");
+    console.error("Некорректная дата:", dateValue);
     return;
   }
 
@@ -97,11 +95,9 @@ function onAddTaskButtonClick() {
     return;
   }
 
-  const newTask = createTodoItem(text, description, date);
-  if (newTask) {
-    todoList.appendChild(newTask);
-  }
-
+  const newTask = { text, description, date: date.toISOString() };
+  createTodoItem(text, description, date);
+  // saveTaskToServer(newTask);
   resetForm();
 }
 

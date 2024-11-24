@@ -37,7 +37,6 @@ export function createTodoItem(text: string, description: string, date: Date): H
 
   // Добавляем содержимое и кнопку удаления в элемент списка
   newTaskItem.appendChild(todoContent);
-
   newTaskItem.appendChild(deleteButton);
 
   return newTaskItem;
