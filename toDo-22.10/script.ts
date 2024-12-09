@@ -79,7 +79,8 @@ function onAddTaskButtonClick(): void {
     return;
   }
 
-  createTodoItem(text, description, date);
+  const newTaskItem = createTodoItem(text, description, date);
+  todoList.appendChild(newTaskItem);
   resetForm();
 }
 

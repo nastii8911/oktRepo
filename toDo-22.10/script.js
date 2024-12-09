@@ -59,7 +59,8 @@ function onAddTaskButtonClick() {
         alert("Задача с таким названием уже существует!");
         return;
     }
-    createTodoItem(text, description, date);
+    const newTaskItem = createTodoItem(text, description, date);
+    todoList.appendChild(newTaskItem);
     resetForm();
 }
 function onGenerateButtonClick() {

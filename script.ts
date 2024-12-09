@@ -18,3 +18,4 @@ sumButton.addEventListener("click", () => {
   // @ts-expect-error
   sumButton.textContent += Number(input1.value) + Number(input2.value);
 });
+export {};
