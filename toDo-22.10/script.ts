@@ -8,6 +8,8 @@ const addTaskButton = document.querySelector(".add-task-button") as HTMLButtonEl
 const generateButton = document.querySelector(".generate-btn") as HTMLButtonElement;
 const todoList = document.querySelector(".todo-list") as HTMLElement;
 
+// const API_URL = "http://localhost:3000/tasks";
+
 if (!textInput || !descriptionInput || !dateInput || !addTaskButton || !todoList || !generateButton) {
   throw new Error("Не удалось найти необходимые элементы на странице.");
 }
@@ -17,6 +19,58 @@ descriptionInput.addEventListener("input", toggleAddButtonState);
 dateInput.addEventListener("input", toggleAddButtonState);
 addTaskButton.addEventListener("click", onAddTaskButtonClick);
 generateButton.addEventListener("click", onGenerateButtonClick);
+// window.addEventListener("load", fetchTasksFromServer);
+
+type Task = {
+  id: number; // ID задачи
+  text: string;
+  description: string;
+  date: string; // ISO-строка
+};
+function onGenerateButtonClick() {
+  const randomText = generateRandomText();
+  textInput.value = randomText.task;
+  descriptionInput.value = randomText.description;
+
+  toggleAddButtonState();
+}
+fetch("http://localhost:3000/users", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json", // Указываем, что отправляем данные в формате JSON
+  },
+  body: JSON.stringify({
+    name: "Nina",
+    email: "Nina@example.com",
+  }),
+})
+  .then((response) => response.json())
+  .then((data) => console.log("User added:", data))
+  .catch((error) => console.error("Error:", error));
+
+fetch("http://localhost:3000/users")
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Error:", error));
+
+// function fetchTasksFromServer(): void {
+//   fetch(API_URL)
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error("Ошибка загрузки задач с сервера");
+//       }
+//       return response.json();
+//     })
+//     .then((tasks: Task[]) => {
+//       tasks.forEach((task) => {
+//         const taskDate = new Date(task.date);
+//         const taskItem = createTodoItem(task.text, task.description, taskDate);
+//         taskItem.dataset.id = task.id.toString(); // Сохраняем ID задачи в атрибуте
+//         todoList.appendChild(taskItem);
+//       });
+//     })
+//     .catch((error) => console.error("Ошибка при загрузке задач:", error));
+// }
 
 type RandomTask = {
   task: string;
@@ -78,16 +132,11 @@ function onAddTaskButtonClick(): void {
     alert("Задача с таким названием уже существует!");
     return;
   }
+  function onGenerateButtonClick() {
+    const randomText = generateRandomText();
+    textInput.value = randomText.task;
+    descriptionInput.value = randomText.description;
 
-  const newTaskItem = createTodoItem(text, description, date);
-  todoList.appendChild(newTaskItem);
-  resetForm();
-}
-
-function onGenerateButtonClick() {
-  const randomText = generateRandomText();
-  textInput.value = randomText.task;
-  descriptionInput.value = randomText.description;
-
-  toggleAddButtonState();
+    toggleAddButtonState();
+  }
 }
