@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Story</title>
+    <link rel="stylesheet" href="style-layout1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Story</title>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+
+            <!-- Логотип -->
+            <div class="header__logo">Kids Story</div>
+
+            <!-- Меню -->
+            <nav class="header__menu">
+                <a href="#" class="header__menu-link">О нас</a>
+                <a href="#" class="header__menu-link">Расписание</a>
+                <a href="#" class="header__menu-link">Программа</a>
+                <a href="#" class="header__menu-link">Фото и видео</a>
+                <a href="#" class="header__menu-link">Команда</a>
+                <a href="#" class="header__menu-link">Контакты</a>
+            </nav>
+
+            <!-- Контакты -->
+            <div class="header__contacts">
+                <div class="header__contacts-info">
+
+                    <!-- <span class="header__contacts-address">Москва, ул. Муравская д.38, к.1</span>
+                    <span class="header__contacts-metro">ЖК Мир Митино <a href="#" class="header__metro-link">м.
+                            Пятницкое шоссе</a></span> -->
+                    <span class="header__contacts-phone">+7 495 123 34 25</span>
+                    <span class="header__contacts-text">Заказать обратный звонок</span>
+                </div>
+                <div class="header__contacts-icons">
+                    <img src="/img/vk.svg" alt="VK">
+                    <img src="/img/tg.svg" alt="Telegram">
+                </div>
+                <button class="header__contacts-button">Записаться на экскурсию</button>
+            </div>
+    </div>
+    </header>
+    <section class="main-info">
+        <div class="container main-info__content">
+            <div class="main-info__text">
+                <h2 class="main-info__title">Kidsstory</h2>
+                <p class="main-info__description">
+                    Английский детский
+                    сад и клуб
+                </p>
+            </div>
+            <div class="main-info__image">
+                <div class="main-info__image-boy">
+                    <img src="img/boy.png" alt="мальчик">
+                </div>
+            </div>
+        </div>
+        <section class="form-section">
+            <div class=" form-section__content">
+                <h2 class="form-section__title">Запишитесь
+                    на персональную
+                    экскурсию</h2>
+                <p class="form-section__description">
+                    Заполните форму и посмотрите
+                    детский сад вживую в удобное для
+                    вас время
+                </p>
+                <form action="#" method="POST" class="form-section__form">
+                    <div class="form-section__group">
+                        <input type="text" id="name" name="name" class="form-section__input"
+                            placeholder="Введите ваше имя" required>
+                    </div>
+                    <div class="form-section__group">
+
+                        <input type="tel" id="phone" name="phone" class="form-section__input"
+                            placeholder="Введите ваш телефон" required>
+                    </div>
+                    <div class="form-section__group">
+                        <textarea id="message" name="message" class="form-section__textarea"
+                            placeholder="Введите ваше сообщение"></textarea>
+                        <div class="form-section__wrapper">
+                            <input class="form-section__checkbox" type="checkbox" id="customCheckbox">
+                            <label for="customCheckbox" class="form-section__checkbox-label">Я принимаю условия
+                                пользовательского
+                                соглашения</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="form-section__button">Записаться</button>
+                </form>
+            </div>
+        </section>
+    </section>
+</body>
+
+</html>
